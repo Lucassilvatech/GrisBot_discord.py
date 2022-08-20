@@ -1,0 +1,26 @@
+import discord
+from discord.ext import commands
+import os
+
+class Files(commands.Cog):
+    """Cria e manipula arquivos"""
+
+    def __init__(self, bot):
+        self.bot = bot
+
+
+    @commands.command(name="write", help="Cria um arquivo .txt com os dados inseridos na mensagem")
+    async def create_file(self, ctx, *, text):
+        file = open(ctx.author.name + ".txt","a")
+        text = text + "\n"
+        file.write(text)
+        file.close()
+
+
+    @commands.command(name="send_me", help="Envia o arquivo criado com o comando '!write'")
+    async def arquivo(self, ctx):
+        await ctx.send(file=discord.File(ctx.author.name + ".txt"))
+        os.remove(ctx.author.name + ".txt")
+
+def setup(bot):
+    bot.add_cog(Files(bot))
