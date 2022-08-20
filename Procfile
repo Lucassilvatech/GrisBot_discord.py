@@ -1,1 +1,1 @@
-worker : python gris.py
+worker: python gris.py
