@@ -5,3 +5,4 @@ python-dotenv
 wikipedia
 youtube_dl
 asyncio
+pynaCL
