@@ -3,7 +3,7 @@ from discord.ext import commands
 import os
 
 
-bot = commands.Bot(command_prefix="!")
+bot = commands.Bot(command_prefix="!", intents=5)
 
 for file in os.listdir("commands"):
     if file.endswith(".py"):
