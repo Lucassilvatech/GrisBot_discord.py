@@ -10,12 +10,12 @@ bot = commands.Bot(command_prefix="!", intents=Intents.all())
 
 async def load_cogs(bot):
     await asyncio.sleep(5)
-    bot.load_extension("gerenciadores")
+    asyncio.run(bot.load_extension("gerenciadores")) 
 
     for file in os.listdir("commands"):
         if file.endswith(".py"):
             cog = file[:-3]
-            bot.load_extension(f"commands.{cog}")
+            asyncio.run(bot.load_extension(f"commands.{cog}"))
             
 
 asyncio.run(load_cogs(bot)) 
