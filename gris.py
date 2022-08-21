@@ -4,7 +4,7 @@ from discord import Intents
 import os
 
 
-bot = commands.Bot("!")
+bot = commands.Bot(command_prefix="!", intents=Intents.all())
 
 
 def load_cogs(bot):
@@ -14,7 +14,7 @@ def load_cogs(bot):
         if file.endswith(".py"):
             cog = file[:-3]
             bot.load_extension(f"commands.{cog}")
-
+            
 
 load_cogs(bot)
 
