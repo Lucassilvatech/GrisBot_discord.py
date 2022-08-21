@@ -1,13 +1,15 @@
 from dotenv import load_dotenv
 from discord.ext import commands
 from discord import Intents
+import asyncio
 import os
 
 
 bot = commands.Bot(command_prefix="!", intents=Intents.all())
 
 
-def load_cogs(bot):
+async def load_cogs(bot):
+    await asyncio.sleep(5)
     bot.load_extension("gerenciadores")
 
     for file in os.listdir("commands"):
