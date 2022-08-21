@@ -1,9 +1,10 @@
 from dotenv import load_dotenv
 from discord.ext import commands
+from discord import Intents
 import os
 
 
-bot = commands.Bot(command_prefix="!", intents=5)
+bot = commands.Bot(command_prefix="!", intents=Intents.all())
 
 for file in os.listdir("commands"):
     if file.endswith(".py"):
