@@ -4,7 +4,7 @@ from discord import Intents
 import os
 
 
-bot = commands.Bot(command_prefix="!", intents=Intents.all())
+bot = commands.Bot("!")
 
 
 def load_cogs(bot):
