@@ -18,7 +18,7 @@ async def load_cogs(bot):
             bot.load_extension(f"commands.{cog}")
             
 
-load_cogs(bot)
+asyncio.run(load_cogs(bot)) 
 
 
 load_dotenv()
