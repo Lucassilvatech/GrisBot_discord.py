@@ -7,13 +7,13 @@ import os
 bot = commands.Bot(command_prefix="!", intents=Intents.all())
 
 
-async def load_cogs(bot):
-    await bot.load_extension("gerenciadores")
+def load_cogs(bot):
+    bot.load_extension("gerenciadores")
 
     for file in os.listdir("commands"):
         if file.endswith(".py"):
             cog = file[:-3]
-            await bot.load_extension(f"commands.{cog}")
+            bot.load_extension(f"commands.{cog}")
             
 
 load_cogs(bot)
