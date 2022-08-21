@@ -39,5 +39,5 @@ class Numeros(commands.Cog):
         except SyntaxError:
             await ctx.send("verifique se colocou os argumentos necessarios!")
 
-def setup(bot):
-    bot.add_cog(Numeros(bot))
+async def setup(bot):
+    await bot.add_cog(Numeros(bot))

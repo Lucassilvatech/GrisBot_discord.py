@@ -29,5 +29,5 @@ class Pesquisa(commands.Cog):
             await ctx.channel.send("As pesquisas da wiki agora são feitas em portugues!")
 
 
-def setup(bot):
-    bot.add_cog(Pesquisa(bot))
+async def setup(bot):
+    await bot.add_cog(Pesquisa(bot))

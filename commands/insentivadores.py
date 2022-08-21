@@ -15,5 +15,5 @@ class Insentivadores(commands.Cog):
         frase = json.loads(var.text)
         await ctx.send(frase[0]["q"])
 
-def setup(bot):
-    bot.add_cog(Insentivadores(bot))
+async def setup(bot):
+    await bot.add_cog(Insentivadores(bot))

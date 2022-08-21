@@ -22,5 +22,5 @@ class Files(commands.Cog):
         await ctx.send(file=discord.File(ctx.author.name + ".txt"))
         os.remove(ctx.author.name + ".txt")
 
-def setup(bot):
-    bot.add_cog(Files(bot))
+async def setup(bot):
+    await bot.add_cog(Files(bot))

@@ -20,5 +20,5 @@ class Embeds(commands.Cog):
         await ctx.send(embed=grisEmbed)
 
 
-def setup(bot):
-    bot.add_cog(Embeds(bot))
+async def setup(bot):
+    await bot.add_cog(Embeds(bot))
