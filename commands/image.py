@@ -7,6 +7,7 @@ class Image(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
+        self.discord = discord
 
 
     @commands.command(name="avatar", help="Exibe o avatar de usuario marcado.")

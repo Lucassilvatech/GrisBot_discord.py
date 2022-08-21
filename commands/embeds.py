@@ -5,6 +5,7 @@ from discord.ext import commands
 class Embeds(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.discord = discord
 
 
     

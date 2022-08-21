@@ -9,6 +9,7 @@ class Music(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
+        self.discord = discord
         
 
         self.YDL_OPTIONS = {'format': 'worstaudio/best', 'noplaylist': 'True', 'simulate': 'True', 'preferredquality': '192', 'preferredcodec': 'mp3', 'key': 'FFmpegExtractAudio'}
