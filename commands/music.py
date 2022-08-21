@@ -36,7 +36,7 @@ class Music(commands.Cog):
             
             URL = info['formats'][0]['url']
 
-            vc.play(discord.FFmpegPCMAudio(executable="C:/ffmpeg/bin/ffmpeg.exe", source = URL, **self.FFMPEG_OPTIONS))
+            vc.play(self.discord.FFmpegPCMAudio(executable="C:/ffmpeg/bin/ffmpeg.exe", source = URL, **self.FFMPEG_OPTIONS))
                     
             while vc.is_playing():
                 await sleep(1)

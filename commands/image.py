@@ -10,7 +10,7 @@ class Image(commands.Cog):
 
 
     @commands.command(name="avatar", help="Exibe o avatar de usuario marcado.")
-    async def avatar(self, ctx, member: discord.Member = None):
+    async def avatar(self, ctx, member: self.discord.Member = None):
         if member != None:
             await ctx.send(member.avatar_url)
         else:
