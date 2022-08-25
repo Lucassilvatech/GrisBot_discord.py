@@ -7,15 +7,14 @@ class Image(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-        self.discord = discord
 
 
     @commands.command(name="avatar", help="Exibe o avatar de usuario marcado.")
-    async def avatar(self, ctx, member: self.discord.Member = None):
+    async def avatar(self, ctx, member: discord.Member = None):
         if member != None:
-            await ctx.send(member.avatar_url)
+            await ctx.send(member.avatar)
         else:
-            await ctx.send(ctx.author.avatar_url)
+            await ctx.send(ctx.author.avatar)
 
 
 async def setup(bot):

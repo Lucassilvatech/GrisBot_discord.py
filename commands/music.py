@@ -9,7 +9,6 @@ class Music(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-        self.discord = discord
         
 
         self.YDL_OPTIONS = {'format': 'worstaudio/best', 'noplaylist': 'True', 'simulate': 'True', 'preferredquality': '192', 'preferredcodec': 'mp3', 'key': 'FFmpegExtractAudio'}
@@ -22,14 +21,14 @@ class Music(commands.Cog):
         global vc
         
         try:
-            voice_channel = ctx.message.author.voice.channel
+            voice_channel = ctx.author.voice.channel
             vc = await voice_channel.connect()
         except:
+            await ctx.send(f"{ctx.author.mention} Ja estou na call")
             print('[ERROR]') #debug
 
         if vc.is_playing():
-            lista_music.append(arg)
-            await ctx.send(f'{ctx.message.author.mention}, Já estou na call.')
+            await ctx.send(f', Já estou cantando.')
 
         else:
             with YoutubeDL(self.YDL_OPTIONS) as ydl:
@@ -37,7 +36,7 @@ class Music(commands.Cog):
             
             URL = info['formats'][0]['url']
 
-            vc.play(self.discord.FFmpegPCMAudio(executable="C:/ffmpeg/bin/ffmpeg.exe", source = URL, **self.FFMPEG_OPTIONS))
+            vc.play(discord.FFmpegPCMAudio(executable="ffmpeg", source=URL, **self.FFMPEG_OPTIONS))
                     
             while vc.is_playing():
                 await sleep(1)
@@ -46,6 +45,8 @@ class Music(commands.Cog):
     @commands.command()
     async def sair(self, ctx):
         await vc.disconnect()
+        embedSair = discord.Embed(color=0xfa0000, title = "Okay... saindo... 🥺" )
+        await ctx.send(embed = embedSair)
 
 
     @commands.command()
