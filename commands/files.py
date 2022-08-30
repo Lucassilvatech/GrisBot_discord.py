@@ -11,11 +11,11 @@ class Files(commands.Cog):
 
     @commands.command(name="write", help="Cria um arquivo .txt com os dados inseridos na mensagem")
     async def create_file(self, ctx, *, text):
-        file = open(ctx.author.name + ".txt","a")
-        text = text + "\n"
-        file.write(text)
-        file.close()
-
+        with open(ctx.author.name + ".txt","a") as file:
+            text = text + "\n"
+            file.write(text)
+        
+ 
 
     @commands.command(name="send_me", help="Envia o arquivo criado com o comando '!write'")
     async def arquivo(self, ctx):
