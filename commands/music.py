@@ -36,10 +36,12 @@ class Music(commands.Cog):
                 info = ydl.extract_info(arg, download=False)
             
             URL = info['formats'][0]['url']
+            
+            if not discord.opus.is_loaded():
+                discord.opus.load_opus() 
 
             vc.play(discord.FFmpegPCMAudio(executable="ffmpeg", source=URL, **self.FFMPEG_OPTIONS))
-            if not discord.opus.is_loaded():
-                discord.opus.load_opus()    
+               
             while vc.is_playing():
                 await sleep(1)
             #if not vc.is_paused():
