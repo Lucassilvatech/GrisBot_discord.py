@@ -19,7 +19,7 @@ class Music(commands.Cog):
     @commands.command(name="musga", help="coloque um url da musica que deseja reproduzir!")
     async def play(self, ctx, arg):
         global vc
-        discord.opus.load_opus('opus')
+        
         
         try:
             voice_channel = ctx.author.voice.channel
@@ -38,7 +38,8 @@ class Music(commands.Cog):
             URL = info['formats'][0]['url']
 
             vc.play(discord.FFmpegPCMAudio(executable="ffmpeg", source=URL, **self.FFMPEG_OPTIONS))
-                    
+            if not discord.opus.is_loaded():
+                discord.opus.load_opus()    
             while vc.is_playing():
                 await sleep(1)
             #if not vc.is_paused():
