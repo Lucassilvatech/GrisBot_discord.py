@@ -19,6 +19,7 @@ class Music(commands.Cog):
     @commands.command(name="musga", help="coloque um url da musica que deseja reproduzir!")
     async def play(self, ctx, arg):
         global vc
+        discord.opus.load_opus('opus')
         
         try:
             voice_channel = ctx.author.voice.channel
