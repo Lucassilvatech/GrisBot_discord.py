@@ -46,20 +46,20 @@ class Music(commands.Cog):
                 await sleep(1)
             #if not vc.is_paused():
             
-    @commands.command()
+    @commands.hybrid_command(with_app_commands=True)
     async def sair(self, ctx):
         await vc.disconnect()
-        embedSair = discord.Embed(color=0xfa0000, title = "Okay... saindo... 🥺" )
+        embedSair = discord.Embed(color=0xfa0000, title = "Okay saindo, áte logo! ^_^ " )
         await ctx.send(embed = embedSair)
 
 
-    @commands.command()
+    @commands.hybrid_command(with_app_commands=True)
     async def pause(self, ctx):
         vc.pause()
         await ctx.message.add_reaction('⏯')
 
 
-    @commands.command()
+    @commands.hybrid_command(with_app_commands=True)
     async def resume(self, ctx):
         vc.resume()
         await ctx.message.add_reaction('⏯')

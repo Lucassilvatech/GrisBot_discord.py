@@ -9,7 +9,7 @@ class Numeros(commands.Cog):
         self.responseGris = ["Não quero", "To com preguiça", "faça vc, tem mão ñ? Hummmm!", "(* ￣︿￣)", "ಠ_ಠ","(¬_¬ )"]
 
       
-    @commands.command(name="dado", help="Roda um dado, se nenhum parametro for especificado roda 1D20")
+    @commands.hybrid_command(name="dado", with_app_commands=True, help="Roda um dado, se nenhum parametro for especificado roda 1D20")
     async def randomLuck(self, ctx, arg=1, arg2=20, arg3=1):
         loop = int(arg3)
         valueDado = int(arg2)
@@ -25,7 +25,7 @@ class Numeros(commands.Cog):
 
     
     
-    @commands.command(name="calcule")
+    @commands.hybrid_command(name="calcule", with_app_commands=True)
     async def calcule(self, ctx, *expression):
         try:
             expression = "".join(expression)

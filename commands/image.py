@@ -9,7 +9,7 @@ class Image(commands.Cog):
         self.bot = bot
 
 
-    @commands.command(name="avatar", help="Exibe o avatar de usuario marcado.")
+    @commands.hybrid_command(name="avatar", with_app_commands=True, help="Exibe o avatar de usuario marcado.")
     async def avatar(self, ctx, member: discord.Member = None):
         if member != None:
             await ctx.send(member.avatar)

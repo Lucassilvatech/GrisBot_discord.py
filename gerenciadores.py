@@ -13,6 +13,7 @@ class Gerenciadores(commands.Cog):
         print('Estou pronta!')
         canal = self.bot.get_channel(991477136592478258)
         await canal.send("A mãe tá on")
+        await self.bot.tree.sync()
         await self.bot.change_presence(status=discord.Status.online, activity=discord.Game("Visual Studio Code com Papython"))
     
 
