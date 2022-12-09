@@ -27,7 +27,7 @@ class Numeros(commands.Cog):
     
     
     @commands.hybrid_command(name="calcule", with_app_commands=True)
-    async def calcule(self, ctx, *expression):
+    async def calcule(self, ctx, *,expression):
         try:
             expression = "".join(expression)
             sorte = random.randint(1, 10)
