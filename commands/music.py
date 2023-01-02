@@ -12,6 +12,7 @@ class Music(commands.Cog):
         self.my_list = []
         self.valid = False
         self.URL = None
+        self.ctx = None
 
         self.YDL_OPTIONS = {'format': 'worstaudio/best', 'noplaylist': 'True', 'simulate': 'True', 'preferredquality': '192', 'preferredcodec': 'mp3', 'key': 'FFmpegExtractAudio'}
         self.FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
@@ -63,7 +64,7 @@ class Music(commands.Cog):
 
     @tasks.loop(seconds=1.0)
     async def _loop(self):
-         if not vc.is_playing() and not vc.is_paused():
+        if not vc.is_playing() and not vc.is_paused():
 
             vc.play(discord.FFmpegPCMAudio(executable="ffmpeg", source = self.URL, **self.FFMPEG_OPTIONS))
             discord.opus.load_opus('opus')
@@ -85,6 +86,8 @@ class Music(commands.Cog):
     async def _list(self):
         if not vc.is_playing():
             if len(self.my_list) == 0:
+                await self.ctx.send('A lista está vazia!')
+                vc.resume()
                 return
             
             self.URL = self.my_list.pop(0)
@@ -92,6 +95,13 @@ class Music(commands.Cog):
             discord.opus.load_opus('opus')      
             while vc.is_playing():
                 await sleep(1)
+
+            
+    @commands.command()
+    async def prox(self, ctx):
+        self.ctx = ctx
+        vc.pause()
+        self._list.start()
 
             
     @commands.command()
