@@ -17,7 +17,7 @@ class Verificar(commands.Cog):
     async def on_ready(self):
         self.loop_alert.start()
 
-    # trocar o nome dessa função
+ 
     @tasks.loop(seconds=30)
     async def loop_alert(self):
         canal = self.bot.get_channel(991470178019856447)
@@ -47,7 +47,7 @@ class Verificar(commands.Cog):
                     result = result.replace("'", "")
                     result = result.replace(",", "")
                     
-                    await canal.send(result)
+                    await canal.send('Lembrete: '+ result)
 
 async def setup(bot):
     await bot.add_cog(Verificar(bot))

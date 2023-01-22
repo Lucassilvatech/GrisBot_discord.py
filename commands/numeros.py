@@ -1,5 +1,8 @@
 from discord.ext import commands
 from discord import app_commands
+
+import json
+import requests
 import random 
 
 class Numeros(commands.Cog):
@@ -39,6 +42,39 @@ class Numeros(commands.Cog):
                 await ctx.channel.send(self.responseGris[sorte2])
         except SyntaxError:
             await ctx.send("verifique se colocou os argumentos necessarios!")
+
+    @commands.command()
+    async def converter(self, ctx, moeda, valor, help='Converte a moeda que for passada para real.'):
+
+        moedas = {'iene':'JPY',
+        'dolar':'USD',
+        'euro':'EUR',
+        'biticoin':'BTC',
+        'remimbi':'CNY'
+        }
+        # Tenta converter o valor passado em um numero de ponto flutuante
+        try:
+            valor = float(valor)
+        except:
+            await ctx.send('A quantidade a ser convertida tem que ser um numero!')
+            return
+
+        try:
+            moeda = moeda.lower()
+            # completa o link com o codigo referente a moeda
+            API = f'https://economia.awesomeapi.com.br/last/{moedas[moeda]}'
+
+        except:
+            await ctx.send('[O Valor digitado é invalido! Aceito estes valores: [ Iene, Dolar, Euro, Biticoin, Remimbi]')
+            return
+
+        request = requests.get(API)
+        result = json.loads(request.text)
+
+        result = float(result[moedas[moeda] + 'BRL']['bid']) * valor
+
+        await ctx.send(f'{result:.2f} BRL')
+
 
 async def setup(bot):
     await bot.add_cog(Numeros(bot))
